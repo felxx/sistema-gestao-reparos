@@ -13,7 +13,7 @@ Este projeto está sendo desenvolvido como requisito de avaliação para o compo
 * **Autenticação e Permissões:** Controle de acesso para o técnico (visão global) e clientes (visão restrita)[cite: 17, 18].
 * **Painel do Cliente:** Acesso para que o cliente acompanhe exclusivamente o andamento de suas ordens de serviço.
 
-## 💻 Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
 * **Back-end:** Python e Django [cite: 10]
 * **Front-end:** HTML, CSS e JavaScript
