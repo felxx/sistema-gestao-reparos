@@ -1,0 +1,60 @@
+@startuml
+hide circle
+skinparam classAttributeIconSize 0
+
+class User {
+  + username: String
+  + email: String
+  + password: String
+}
+
+class Cliente {
+  + nome: String
+  + cpf_cnpj: String
+  + telefone: String
+  + endereco: Text
+}
+
+class Equipamento {
+  + tipo: String
+  + marca: String
+  + modelo: String
+  + numero_serie: String
+  + especificacoes: Text
+}
+
+class ServicoTabelado {
+  + descricao: String
+  + valor_base: Decimal
+}
+
+class Peca {
+  + nome: String
+  + quantidade_estoque: Integer
+  + valor_custo: Decimal
+  + valor_venda: Decimal
+}
+
+class OrdemDeServico {
+  + data_entrada: DateTime
+  + data_previsao: DateTime
+  + defeito_relatado: Text
+  + laudo_tecnico: Text
+  + status: String
+  + valor_total: Decimal
+}
+
+class ItemOS {
+  + quantidade: Integer
+  + valor_unitario: Decimal
+}
+
+User "1" -- "0..1" Cliente : vinculado a >
+Cliente "1" -- "0..*" Equipamento : possui >
+Cliente "1" -- "0..*" OrdemDeServico : solicita >
+Equipamento "1" -- "0..*" OrdemDeServico : vinculada a <
+OrdemDeServico "1" *-- "0..*" ItemOS : contém >
+ItemOS "0..*" -- "0..1" ServicoTabelado : referente a >
+ItemOS "0..*" -- "0..1" Peca : utiliza >
+
+@enduml
