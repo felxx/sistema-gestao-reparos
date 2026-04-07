@@ -1,0 +1,44 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+
+actor "Técnico (Administrador)" as tecnico
+actor "Cliente" as cliente
+
+rectangle "Sistema de Gestão de OS" {
+  
+  usecase "Realizar Login" as UC_Login
+  
+  usecase "Gerenciar Clientes (CRUD)" as UC_Clientes
+  usecase "Gerenciar Equipamentos (CRUD)" as UC_Equipamentos
+  usecase "Gerenciar Estoque de Peças (CRUD)" as UC_Pecas
+  usecase "Gerenciar Serviços Tabelados (CRUD)" as UC_Servicos
+  usecase "Gerenciar Ordens de Serviço (CRUD)" as UC_OS
+  usecase "Adicionar/Remover Itens na OS" as UC_ItensOS
+  
+  usecase "Consultar Andamento das Próprias OS" as UC_ConsultarOS
+  usecase "Visualizar Próprios Equipamentos" as UC_VisualizarEquip
+
+  tecnico --> UC_Login
+  tecnico --> UC_Clientes
+  tecnico --> UC_Equipamentos
+  tecnico --> UC_Pecas
+  tecnico --> UC_Servicos
+  tecnico --> UC_OS
+  tecnico --> UC_ItensOS
+  
+  cliente --> UC_Login
+  cliente --> UC_ConsultarOS
+  cliente --> UC_VisualizarEquip
+  
+  UC_Clientes ..> UC_Login : <<include>>
+  UC_Equipamentos ..> UC_Login : <<include>>
+  UC_Pecas ..> UC_Login : <<include>>
+  UC_Servicos ..> UC_Login : <<include>>
+  UC_OS ..> UC_Login : <<include>>
+  UC_ItensOS ..> UC_Login : <<include>>
+  UC_ConsultarOS ..> UC_Login : <<include>>
+  UC_VisualizarEquip ..> UC_Login : <<include>>
+
+}
+@enduml
