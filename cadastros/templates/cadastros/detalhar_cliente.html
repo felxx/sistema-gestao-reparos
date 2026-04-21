@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Detalhes do Cliente{% endblock %}
+
+{% block content %}
+<h3 class="h4 mb-3">Ficha do Cliente: {{ object.nome }}</h3>
+
+<div class="card mb-4 shadow-sm">
+    <div class="card-body">
+        <h5 class="card-title">Informações de Contato</h5>
+        <ul class="list-group list-group-flush mt-3">
+            <li class="list-group-item"><strong>ID do Sistema:</strong> {{ object.pk }}</li>
+            <li class="list-group-item"><strong>Nome Completo:</strong> {{ object.nome }}</li>
+            <li class="list-group-item"><strong>Documento (CPF/CNPJ):</strong> {{ object.cpf_cnpj }}</li>
+            <li class="list-group-item"><strong>Telefone:</strong> {{ object.telefone }}</li>
+            <li class="list-group-item"><strong>Endereço:</strong> {{ object.endereco }}</li>
+        </ul>
+    </div>
+</div>
+
+<div>
+    <a href="{% url 'atualizar-cliente' object.pk %}" class="btn btn-warning">Editar Cadastro</a>
+    <a href="{% url 'listar-clientes' %}" class="btn btn-secondary">Voltar para a Lista</a>
+</div>
+{% endblock %}
