@@ -11,9 +11,10 @@ class PaginaInicialView(TemplateView):
 
 class ClienteCreate(CreateView):
     model = Cliente
-    form_class = ClienteForm
+    fields = ['nome', 'cpf_cnpj', 'telefone', 'endereco']
     template_name = 'cadastros/formulario.html'
     success_url = reverse_lazy('listar-clientes')
+    extra_context = {'titulo': 'Cadastrar Novo Cliente'}
 
 class ClienteUpdate(UpdateView):
     model = Cliente
@@ -28,7 +29,8 @@ class ClienteDelete(DeleteView):
 
 class ClienteList(ListView):
     model = Cliente
-    template_name = 'cadastros/listar_clientes.html'
+    template_name = 'cadastros/listar_clientes.html' 
+    extra_context = {'titulo': 'Lista de Clientes Cadastrados'}
 
 class ClienteDetail(DetailView):
     model = Cliente

@@ -1,19 +1,17 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 {% load crispy_forms_tags %}
 
-{% block title %}Cadastro{% endblock %}
+{% block titulo %}Formulário - {{ titulo }}{% endblock %}
 
-{% block content %}
-<div class="bg-white rounded shadow-sm p-4">
-    <h3 class="h4 mb-3">Formulário de Cadastro</h3>
-
-    <form method="post">
+{% block conteudo %}
+    <form method="POST">
         {% csrf_token %}
+        
         {{ form|crispy }}
-
-        <button type="submit" class="btn btn-success mt-3">
-            Cadastrar
-        </button>
+        
+        <div class="mt-3">
+            <button type="submit" class="btn btn-success">Salvar Registro</button>
+            <a href="{% url 'index' %}" class="btn btn-outline-secondary">Cancelar</a>
+        </div>
     </form>
-</div>
 {% endblock %}
