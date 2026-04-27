@@ -1,10 +1,30 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
+{% load static %}
 
-{% block title %}Sobre - Gestão de OS{% endblock %}
+{% block titulo %}Sobre - Gestão de OS{% endblock %}
 
-{% block content %}
-<div class="p-4 bg-white rounded shadow-sm">
-    <h1 class="h3 mb-3">Sistema de Gestão de Ordens de Serviço (OS)</h1>
-    <p class="mb-0">Sistema web desenvolvido em Python/Django para facilitar o gerenciamento de clientes, equipamentos, ordens de serviço e estoque de peças para técnicos autônomos de manutenção e reparo de computadores.</p>
-</div>
+{% block conteudo %}
+    <div class="text-center mb-5">
+        <h1 class="display-4">Sistema de Gestão de Ordens de Serviço (OS)</h1>
+        <p class="lead">Plataforma para técnicos autônomos de manutenção de computadores.</p>
+    </div>
+    
+    <hr>
+    
+    <div class="mt-4">
+        <h3>Sobre o Projeto</h3>
+        <p>Sistema web desenvolvido em Python/Django para facilitar o gerenciamento de clientes, equipamentos, ordens de serviço e estoque de peças.</p>
+    </div>
+
+    <div class="mt-5">
+        <h3>Diagrama de Casos de Uso</h3>
+        <p>Representação das funcionalidades do sistema e das interações dos atores (Técnico e Cliente).</p>
+        <img src="{% static 'img/diagrama_casos_uso.png' %}" alt="Diagrama de Casos de Uso" class="img-fluid border rounded shadow-sm">
+    </div>
+
+    <div class="mt-5">
+        <h3>Diagrama de Classes</h3>
+        <p>Representação da estrutura de dados e dos relacionamentos na base de dados.</p>
+        <img src="{% static 'img/diagrama_classes.png' %}" alt="Diagrama de Classes" class="img-fluid border rounded shadow-sm">
+    </div>
 {% endblock %}
