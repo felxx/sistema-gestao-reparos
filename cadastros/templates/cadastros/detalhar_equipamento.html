@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+            <h5 class="card-title text-primary">Equipamento: {{ object.marca }} {{ object.modelo }}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Pertence a: {{ object.cliente.nome }}</h6>
+            <ul class="list-group list-group-flush mt-3">
+                <li class="list-group-item"><strong>Tipo:</strong> {{ object.tipo }}</li>
+                <li class="list-group-item"><strong>Número de Série:</strong> {{ object.numero_serie }}</li>
+                <li class="list-group-item"><strong>Especificações:</strong> {{ object.especificacoes }}</li>
+            </ul>
+        </div>
+    </div>
+    <div>
+        <a href="{% url 'atualizar-equipamento' object.pk %}" class="btn btn-warning">Editar Dados</a>
+        <a href="{% url 'listar-equipamentos' %}" class="btn btn-secondary">Voltar para a Lista</a>
+    </div>
+{% endblock %}
