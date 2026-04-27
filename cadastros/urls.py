@@ -15,4 +15,10 @@ urlpatterns = [
     path('atualizar/equipamento/<int:pk>/', EquipamentoUpdate.as_view(), name="atualizar-equipamento"),
     path('excluir/equipamento/<int:pk>/', EquipamentoDelete.as_view(), name="excluir-equipamento"),
     path('detalhar/equipamento/<int:pk>/', EquipamentoDetail.as_view(), name="detalhar-equipamento"),
+
+    path('cadastrar/peca/', PecaCreate.as_view(), name="cadastrar-peca"),
+    path('listar/pecas/', PecaList.as_view(), name="listar-pecas"),
+    path('atualizar/peca/<int:pk>/', PecaUpdate.as_view(), name="atualizar-peca"),
+    path('excluir/peca/<int:pk>/', PecaDelete.as_view(), name="excluir-peca"),
+    path('detalhar/peca/<int:pk>/', PecaDetail.as_view(), name="detalhar-peca"),
 ]

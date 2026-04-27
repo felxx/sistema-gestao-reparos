@@ -65,3 +65,33 @@ class EquipamentoDetail(DetailView):
     model = Equipamento
     template_name = 'cadastros/detalhar_equipamento.html'
     extra_context = {'titulo': 'Detalhes do Equipamento'}
+
+class PecaCreate(CreateView):
+    model = Peca
+    fields = ['nome', 'quantidade_estoque', 'valor_custo', 'valor_venda']
+    template_name = 'cadastros/formulario.html'
+    success_url = reverse_lazy('listar-pecas')
+    extra_context = {'titulo': 'Registar Nova Peça'}
+
+class PecaUpdate(UpdateView):
+    model = Peca
+    fields = ['nome', 'quantidade_estoque', 'valor_custo', 'valor_venda']
+    template_name = 'cadastros/formulario.html'
+    success_url = reverse_lazy('listar-pecas')
+    extra_context = {'titulo': 'Editar Peça'}
+
+class PecaDelete(DeleteView):
+    model = Peca
+    template_name = 'cadastros/form_excluir.html'
+    success_url = reverse_lazy('listar-pecas')
+    extra_context = {'titulo': 'Excluir Peça'}
+
+class PecaList(ListView):
+    model = Peca
+    template_name = 'cadastros/listar_pecas.html'
+    extra_context = {'titulo': 'Estoque de Peças'}
+
+class PecaDetail(DetailView):
+    model = Peca
+    template_name = 'cadastros/detalhar_peca.html'
+    extra_context = {'titulo': 'Detalhes da Peça'}

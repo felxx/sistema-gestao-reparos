@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+            <h5 class="card-title text-primary">Peça: {{ object.nome }}</h5>
+            <ul class="list-group list-group-flush mt-3">
+                <li class="list-group-item"><strong>Quantidade em Stock:</strong> {{ object.quantidade_estoque }} unidades</li>
+                <li class="list-group-item"><strong>Valor de Custo:</strong> R$ {{ object.valor_custo }}</li>
+                <li class="list-group-item"><strong>Valor de Venda (Sugerido):</strong> R$ {{ object.valor_venda }}</li>
+            </ul>
+        </div>
+    </div>
+    <div>
+        <a href="{% url 'atualizar-peca' object.pk %}" class="btn btn-warning">Editar Peça</a>
+        <a href="{% url 'listar-pecas' %}" class="btn btn-secondary">Voltar para o Stock</a>
+    </div>
+{% endblock %}
