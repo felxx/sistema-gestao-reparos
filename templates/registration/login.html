@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block titulo %}
+Login - Gestão de Reparos
+{% endblock %}
+
+{% block conteudo %}
+<div class="row justify-content-center mt-5">
+    <div class="col-md-6 col-lg-4">
+        <div class="card shadow-sm border-0">
+            <div class="card-body p-4">
+                <div class="text-center mb-4">
+                    <h4>Acesso Restrito</h4>
+                    <p class="text-muted small">Informe suas credenciais para gerenciar o sistema.</p>
+                </div>
+
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    
+                    <div class="d-grid gap-2 mt-4">
+                        <button type="submit" class="btn btn-primary">Entrar no Sistema</button>
+                    </div>
+                </form>
+                
+                {% if form.errors %}
+                <div class="alert alert-danger mt-3 mb-0 text-center p-2" role="alert">
+                    <small>Usuário ou senha incorretos.</small>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

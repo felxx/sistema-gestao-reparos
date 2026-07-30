@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class Cliente(models.Model):
-    usuario = models.OneToOneField(User, on_delete=models.SET_NULL, null=True, blank=True)
+    usuario = models.ForeignKey(User, on_delete=models.PROTECT, default=1)
     nome = models.CharField(max_length=100)
     cpf_cnpj = models.CharField(max_length=20, verbose_name="CPF/CNPJ")
     telefone = models.CharField(max_length=20)
@@ -12,6 +12,7 @@ class Cliente(models.Model):
         return self.nome
 
 class Equipamento(models.Model):
+    usuario = models.ForeignKey(User, on_delete=models.PROTECT, default=1)
     cliente = models.ForeignKey(Cliente, on_delete=models.PROTECT)
     tipo = models.CharField(max_length=50, help_text="Ex: Desktop, Notebook, Impressora")
     marca = models.CharField(max_length=50)
@@ -23,6 +24,7 @@ class Equipamento(models.Model):
         return f"{self.tipo} {self.marca} {self.modelo}"
 
 class ServicoTabelado(models.Model):
+    usuario = models.ForeignKey(User, on_delete=models.PROTECT, default=1)
     descricao = models.CharField(max_length=100, verbose_name="Descrição do Serviço")
     valor_base = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="Valor Base")
 
@@ -30,6 +32,7 @@ class ServicoTabelado(models.Model):
         return self.descricao
 
 class Peca(models.Model):
+    usuario = models.ForeignKey(User, on_delete=models.PROTECT, default=1)
     nome = models.CharField(max_length=100)
     quantidade_estoque = models.IntegerField(verbose_name="Quantidade em Estoque")
     valor_custo = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="Valor de Custo")
@@ -39,6 +42,7 @@ class Peca(models.Model):
         return self.nome
 
 class OrdemDeServico(models.Model):
+    usuario = models.ForeignKey(User, on_delete=models.PROTECT, default=1)
     cliente = models.ForeignKey(Cliente, on_delete=models.PROTECT)
     equipamento = models.ForeignKey(Equipamento, on_delete=models.PROTECT)
     data_entrada = models.DateTimeField(auto_now_add=True, verbose_name="Data de Entrada")

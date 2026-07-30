@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% load static %}
-
 {% block titulo %}Sobre - Gestão de OS{% endblock %}
 
 {% block conteudo %}
@@ -11,17 +10,32 @@
     
     <hr>
     
+    {% if request.user.is_authenticated %}
+    <div class="mt-4 mb-5 p-4 bg-white rounded shadow-sm">
+        <h4 class="text-primary">Cadastros Recentes</h4>
+        <p class="text-muted">Seus últimos 5 clientes cadastrados no sistema:</p>
+        <ul class="list-group">
+            {% for cliente in ultimos_clientes %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    {{ cliente.nome }}
+                    <a href="{% url 'detalhar-cliente' cliente.pk %}" class="badge bg-info rounded-pill text-decoration-none">Ver detalhes</a>
+                </li>
+            {% empty %}
+                <li class="list-group-item text-muted">Nenhum cliente cadastrado ainda.</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
     <div class="mt-4">
         <h3>Sobre o Projeto</h3>
         <p>Sistema web desenvolvido em Python/Django para facilitar o gerenciamento de clientes, equipamentos, ordens de serviço e estoque de peças.</p>
     </div>
-
     <div class="mt-5">
         <h3>Diagrama de Casos de Uso</h3>
         <p>Representação das funcionalidades do sistema e das interações dos atores (Técnico e Cliente).</p>
         <img src="{% static 'img/diagrama_casos_uso.png' %}" alt="Diagrama de Casos de Uso" class="img-fluid border rounded shadow-sm">
     </div>
-
     <div class="mt-5">
         <h3>Diagrama de Classes</h3>
         <p>Representação da estrutura de dados e dos relacionamentos na base de dados.</p>

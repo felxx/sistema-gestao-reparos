@@ -1,33 +1,73 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block titulo %}{{ titulo }}{% endblock %}</title>
+    <title>{% block titulo %}Gestão de Reparos{% endblock %}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body class="container mt-4">
+<body class="bg-light">
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4 px-3 rounded shadow-sm">
-        <a class="navbar-brand" href="{% url 'index' %}">🛠️ Gestão de Reparos</a>
-        <div class="navbar-nav">
-            <a class="nav-link" href="{% url 'index' %}">Sobre</a>
-            <a class="nav-link" href="{% url 'listar-clientes' %}">Clientes</a>
-            <a class="nav-link" href="{% url 'listar-equipamentos' %}">Equipamentos</a>
-            <a class="nav-link" href="{% url 'listar-pecas' %}">Peças</a>
+    <div class="container mt-4">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4 px-3 rounded shadow-sm">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="{% url 'index' %}">🛠️ Gestão de Reparos</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'index' %}">Sobre</a>
+                        </li>
+                        
+                        {% if request.user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'listar-clientes' %}">Clientes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'listar-equipamentos' %}">Equipamentos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'listar-pecas' %}">Estoque de Peças</a>
+                        </li>
+                        {% endif %}
+                    </ul>
+
+                    <ul class="navbar-nav">
+                        {% if request.user.is_authenticated %}
+                        <li class="nav-item me-3 d-flex align-items-center">
+                            <span class="text-light">Olá, <strong>{{ request.user.username }}</strong>!</span>
+                        </li>
+                        <li class="nav-item">
+                            <form action="{% url 'logout' %}" method="post" class="d-inline">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-outline-danger btn-sm mt-1">Sair</button>
+                            </form>
+                        </li>
+                        {% else %}
+                        <li class="nav-item">
+                            <a class="btn btn-primary btn-sm mt-1 px-4" href="{% url 'login' %}">Entrar</a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        {% if titulo %}
+        <div class="row mb-3">
+            <div class="col">
+                <h3 class="border-bottom pb-2">{{ titulo }}</h3>
+            </div>
         </div>
-    </nav>
-    <h2 class="mb-4">{{ titulo }}</h2>
+        {% endif %}
 
-    <main>
         {% block conteudo %}
         {% endblock %}
-    </main>
-
-    <footer class="mt-5 py-3 text-center text-muted border-top">
-        <p>&copy; 2026 - Sistema de Gestão de Reparos</p>
-    </footer>
+        
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
