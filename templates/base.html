@@ -40,6 +40,12 @@
                         <li class="nav-item me-3 d-flex align-items-center">
                             <span class="text-light">Olá, <strong>{{ request.user.username }}</strong>!</span>
                         </li>
+                        
+                        <!-- Botão de Alterar Senha Adicionado Aqui -->
+                        <li class="nav-item me-2">
+                            <a class="btn btn-outline-light btn-sm mt-1" href="{% url 'password_change' %}">Alterar Senha</a>
+                        </li>
+                        
                         <li class="nav-item">
                             <form action="{% url 'logout' %}" method="post" class="d-inline">
                                 {% csrf_token %}
